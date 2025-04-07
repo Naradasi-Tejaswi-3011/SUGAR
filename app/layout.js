@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={rubik.className}>{children}</body>
+        <body className={`${rubik.className} bg-[#f8e7f3]`}>{children}</body>
       </html>
     </ClerkProvider>
   );

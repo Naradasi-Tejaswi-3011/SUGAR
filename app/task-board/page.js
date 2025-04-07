@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function TaskBoardPage() {
   const [tasks, setTasks] = useState([]);
@@ -83,8 +84,8 @@ export default function TaskBoardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-white shadow-sm p-4">
+    <PageWrapper>
+      <header className="bg-white shadow-sm p-4 rounded-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <Link href="/dashboard" className="text-blue-500 hover:text-blue-700 transition-colors">
@@ -280,6 +281,6 @@ export default function TaskBoardPage() {
           </div>
         </div>
       </main>
-    </div>
+    </PageWrapper>
   );
 } 

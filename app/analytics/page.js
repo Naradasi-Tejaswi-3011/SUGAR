@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function AnalyticsPage() {
   // Sample data - in a real app, this would come from a database or API
@@ -82,7 +83,28 @@ export default function AnalyticsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <PageWrapper>
+      {/* Floating Sugar Cubes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {[1, 2, 3].map((index) => (
+          <div 
+            key={`cube-${index}`}
+            className={`absolute opacity-20 floating-cube-${index}`}
+            style={{
+              right: `${20 * index}%`,
+              top: `${15 * (index % 3) + 20}%`,
+              transform: `rotate(${(index * 5) - 5}deg)`
+            }}
+          >
+            <img 
+              src="/logo.png" 
+              alt="Floating sugar cube" 
+              className="w-8 h-8 md:w-10 md:h-10 opacity-30 sugar-logo"
+            />
+          </div>
+        ))}
+      </div>
+      
       {/* Decorative cotton candy clouds in background */}
       <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-gradient-to-br from-pink-100/30 to-pink-200/20 blur-3xl"></div>
       <div className="absolute top-1/4 -right-24 w-64 h-64 rounded-full bg-gradient-to-br from-purple-100/20 to-blue-100/10 blur-3xl"></div>
@@ -96,7 +118,7 @@ export default function AnalyticsPage() {
         <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-gradient-to-tl from-[#fffaf0] to-[#f8f0e3] rotate-45 shadow-sm opacity-50"></div>
       </div>
       
-      <header className="border-b border-gray-100 relative z-10">
+      <header className="border-b border-gray-100 relative z-10 bg-white rounded-lg shadow-sm">
         <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
           <div className="flex items-center relative">
             <span className="text-4xl font-bold text-pink-500 mr-2">SUGAR</span>
@@ -409,6 +431,55 @@ export default function AnalyticsPage() {
           </div>
         </div>
       </main>
-    </div>
+      
+      {/* Add CSS for sugar animations */}
+      <style jsx global>{`
+        @keyframes floatCube {
+          0% { 
+            transform: translateY(0) rotate(0deg); 
+          }
+          25% {
+            transform: translateY(-10px) rotate(2deg);
+          }
+          50% { 
+            transform: translateY(-20px) rotate(5deg); 
+          }
+          75% {
+            transform: translateY(-10px) rotate(-2deg);
+          }
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+        }
+        
+        /* Fixed positions for floating cubes */
+        .floating-cube-1 {
+          animation: floatCube 15s ease-in-out infinite;
+          animation-delay: 0s;
+        }
+        .floating-cube-2 {
+          animation: floatCube 18s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+        .floating-cube-3 {
+          animation: floatCube 20s ease-in-out infinite;
+          animation-delay: 2s;
+        }
+        
+        /* Remove white background from logo */
+        .sugar-logo {
+          mix-blend-mode: multiply;
+          filter: brightness(1.1) contrast(1.2) saturate(1.1);
+          background-color: transparent !important;
+          box-shadow: none !important;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          position: relative;
+          -webkit-background-clip: content-box;
+          background-clip: content-box;
+          isolation: isolate;
+        }
+      `}</style>
+    </PageWrapper>
   );
 } 

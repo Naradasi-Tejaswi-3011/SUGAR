@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth, useUser, SignOutButton } from "@clerk/nextjs";
 import { useState, useEffect } from 'react';
+import PageWrapper from "@/components/PageWrapper";
 
 export default function Home() {
   const { isLoaded, isSignedIn } = useAuth();
@@ -61,7 +62,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <PageWrapper>
       {/* Navigation Bar */}
       <div className="sticky top-0 w-full z-10 bg-white bg-opacity-95 backdrop-blur-sm shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center py-3 px-4">
@@ -228,7 +229,7 @@ export default function Home() {
       {/* Testimonial Section */}
       <div className="bg-gradient-to-r from-gray-50 to-blue-50 py-16">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-8">What Students Say</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-8">What Students Might Say</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Testimonial Cards */}
@@ -531,6 +532,6 @@ export default function Home() {
           box-shadow: none !important;
         }
       `}</style>
-    </div>
+    </PageWrapper>
   );
 }

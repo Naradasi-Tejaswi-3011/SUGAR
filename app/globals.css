@@ -77,8 +77,8 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 240, 230, 239;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 248, 231, 243;
+  --background-end-rgb: 255, 245, 252;
 }
 
 .dark {
